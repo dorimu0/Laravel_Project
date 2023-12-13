@@ -15,7 +15,8 @@ class DiaryController extends Controller
     public function index()
     {
         //
-        $diaries = Diary::all();
+        $id = Auth::id();
+        $diaries = Diary::where('user_id', $id)->get();
         return view('dashboard', ['diaries' => $diaries]);
     }
 
@@ -113,5 +114,8 @@ class DiaryController extends Controller
     public function destroy(string $id)
     {
         //
+        $diary = Diary::find($id);
+        $diary->delete();
+        return redirect()->route('diary.index');
     }
 }

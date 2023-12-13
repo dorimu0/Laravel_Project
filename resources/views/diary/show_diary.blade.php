@@ -19,8 +19,12 @@
                 <x-dropdown-link href="/create_diary/{{$diary->id}}/edit" class="text-center">
                   {{ __('수정') }}
                 </x-dropdown-link>
-                <x-dropdown-link :href="route('profile.edit')" class="text-center">
-                  {{ __('삭제') }}
+                <x-dropdown-link href="" class="text-center">
+                  <form method="POST" action="/remove/{{$diary->id}}">
+                    @csrf
+                    @method('delete')
+                    <button type="submit">삭제</button>
+                  </form>
                 </x-dropdown-link>
               </x-slot>
             </x-dropdown>
