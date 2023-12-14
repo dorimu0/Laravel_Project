@@ -47,9 +47,6 @@
                 {{-- <div class="w-1/4 m-auto">
                     <img src="/kuma.jpg" alt="" class=" rounded-full" >
                 </div> --}}
-                <div class="text-center text-lg">
-                    <button class="bg-amber-400 font-bold text-white p-2 rounded-lg">기록하러 가기</button>
-                </div>
             </div>
             
         </div>

@@ -32,7 +32,7 @@ Route::get('/create_diary/{id}/edit', [DiaryController::class, 'edit'])->name('d
 // 글 수정
 Route::put('/diary_show/{id}', [DiaryController::class, 'update'])->name('diary.update');
 // 글 저장
-Route::post('/dashboard', [DiaryController::class, 'store']);
+Route::post('/dashboard', [DiaryController::class, 'store'])->name('diary.store');
 // 글 읽기
 Route::get('/show_diary/{id}', [DiaryController::class, 'show']);
 // 글 삭제

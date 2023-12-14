@@ -3,10 +3,6 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('회원 탈퇴') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('회원 탈퇴 시 작성된 일기 내용은 모두 삭제됩니다.') }}
-        </p>
     </header>
 
     <x-danger-button

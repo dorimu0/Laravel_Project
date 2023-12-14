@@ -12,7 +12,7 @@
           @foreach ($images as $image)
           <label class="flex flex-col items-center">
             <img src="{{$image->path}}" class="m-auto my-6 w-2/3 bg-red-50 h-32 border border-gray-200"/>
-            <input type="radio" name="image_path" value="{{$image->path}}" {{ old('image_path', $diary->image_path ?? '') == $image->path ? 'checked' : '' }}  />
+            <input type="radio" id="image" name="image_path" value="{{$image->path}}" {{ old('image_path', $diary->image_path ?? '') == $image->path ? 'checked' : '' }}  />
           </label>
           @endforeach
           
@@ -20,7 +20,7 @@
     
       
         <div class="w-full bg-white text-center p-16">
-          <input type="text" name="title" value="{{ old('title', $diary->title ?? '') }}" class="border-0 border-b-2 text-center text-xl focus:outline-none focus:border-slate-600 bg-inherit p-1 px-5" style="box-shadow: none;" placeholder="Title">
+          <input type="text" id="title" name="title" value="{{ old('title', $diary->title ?? '') }}" class="border-0 border-b-2 text-center text-xl focus:outline-none focus:border-slate-600 bg-inherit p-1 px-5" style="box-shadow: none;" placeholder="Title">
 
 
           <div class="my-6 mx-12">
@@ -28,13 +28,35 @@
               날짜
             </div>
             <hr class="mb-5">
-            <textarea name="content" rows="15" class="w-full text-l box-border border-gray-200 focus:outline-none focus:border-none bg-inherit" style="box-shadow: none; resize: none;" >{{ old('content', $diary->content ?? '') }}</textarea>
+            <textarea id="content" name="content" rows="15" class="w-full text-l box-border border-gray-200 focus:outline-none focus:border-none bg-inherit" style="box-shadow: none; resize: none;" >{{ old('content', $diary->content ?? '') }}</textarea>
           </div>
         </div>
       </div>
       <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 text-right">
-        <x-primary-button class="my-3" >{{ __('저장') }}</x-primary-button>
+        <x-primary-button id="save-button" class="my-3" >{{ __('저장') }}</x-primary-button>
       </div>
     </form>
   </div>
 </x-app-layout>
+
+<script>
+  document.getElementById('save-button').addEventListener('click', function(event) {
+    const imageSelected = document.querySelector('input[name="image_path"]:checked');
+    const title = document.getElementById('title').value;
+    const content = document.getElementById('content').value;
+
+    if (!imageSelected) {
+        event.preventDefault();
+        alert('이미지를 선택해주세요.');
+    }
+    else if (title.trim() === '') {
+        event.preventDefault();
+        alert('타이틀을 입력해주세요.');
+    }
+    else if (content.trim() === '') {
+        event.preventDefault();
+        alert('콘텐트를 입력해주세요.');
+    }
+});
+
+</script>
